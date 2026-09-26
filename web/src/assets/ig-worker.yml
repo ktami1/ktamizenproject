@@ -1,0 +1,60 @@
+# Slidemine worker — installed by the web app on the data branch.
+# Runs on every job the app queues. Everything it writes is encrypted.
+# worker-version: __VERSION__
+name: slidemine-worker
+run-name: slidemine worker
+
+on:
+  push:
+    branches: [__DATA_BRANCH__]
+    paths: ["queue/**"]
+
+concurrency:
+  group: slidemine-worker
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  work:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - name: Checkout data
+        uses: actions/checkout@v4
+        with:
+          ref: __DATA_BRANCH__
+          path: data
+
+      - name: Checkout worker code
+        uses: actions/checkout@v4
+        with:
+          ref: __CODE_REF__
+          path: app
+          sparse-checkout: worker
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: app/worker/requirements.txt
+
+      - name: Install
+        run: |
+          pip install -r app/worker/requirements.txt
+          # rapidocr pulls the GUI build of OpenCV; keep only the headless one.
+          pip uninstall -y opencv-python
+          pip install --force-reinstall --no-deps opencv-python-headless==4.12.0.88
+
+      - name: Process queue
+        env:
+          DATA_DIR: data
+          VAULT_KEY: ${{ secrets.SLIDEMINE_VAULT_KEY }}
+          APIFY_TOKEN: ${{ secrets.SLIDEMINE_APIFY_TOKEN }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          TIME_BUDGET_MIN: "320"
+        run: |
+          git -C data config user.name "slidemine-worker"
+          git -C data config user.email "slidemine-worker@users.noreply.github.com"
+          python app/worker/run.py
