@@ -1,0 +1,104 @@
+{
+ "carousel": [
+  {
+   "src": "slides/c0.png",
+   "text": "Nessuno ti dirà questa verità.",
+   "lines": [
+    "Nessuno ti dirà",
+    "questa verità."
+   ],
+   "boxes": [
+    [
+     0.22962962962962963,
+     0.42962962962962964,
+     0.5407407407407407,
+     0.05851851851851852
+    ],
+    [
+     0.25972222222222224,
+     0.5051851851851852,
+     0.48055555555555557,
+     0.06518518518518518
+    ]
+   ]
+  },
+  {
+   "src": "slides/c1.png",
+   "text": "Il talento non basta.",
+   "lines": [
+    "Il talento",
+    "non basta."
+   ],
+   "boxes": [
+    [
+     0.30092592592592593,
+     0.4177777777777778,
+     0.39814814814814814,
+     0.06888888888888889
+    ],
+    [
+     0.28888888888888886,
+     0.5133333333333333,
+     0.4222222222222222,
+     0.06888888888888889
+    ]
+   ]
+  },
+  {
+   "src": "slides/c2.png",
+   "text": "La costanza batte la motivazione.",
+   "lines": [
+    "La costanza batte",
+    "la motivazione."
+   ],
+   "boxes": [
+    [
+     0.21851851851851853,
+     0.4551851851851852,
+     0.562962962962963,
+     0.037037037037037035
+    ],
+    [
+     0.25787037037037036,
+     0.5055555555555555,
+     0.4842592592592593,
+     0.03925925925925926
+    ]
+   ]
+  }
+ ],
+ "thumbs": [
+  {
+   "src": "slides/t0.png",
+   "likes": "48.2K"
+  },
+  {
+   "src": "slides/t1.png",
+   "likes": "39.1K"
+  },
+  {
+   "src": "slides/t2.png",
+   "likes": "31.8K"
+  },
+  {
+   "src": "slides/t3.png",
+   "likes": "27.4K"
+  },
+  {
+   "src": "slides/t4.png",
+   "likes": "22.9K"
+  },
+  {
+   "src": "slides/t5.png",
+   "likes": "19.8K"
+  },
+  {
+   "src": "slides/t6.png",
+   "likes": "16.5K"
+  },
+  {
+   "src": "slides/t7.png",
+   "likes": "14.2K"
+  }
+ ]
+}
